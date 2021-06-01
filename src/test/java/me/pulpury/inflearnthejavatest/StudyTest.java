@@ -19,6 +19,8 @@ class StudyTest {
 	}
 	
 	@Test
+	// @Disabled는 해당 테스트를 비활성화 시킬 때 사용한다.
+	// ex) test가 깨질 때, 
 	@Disabled
 	void create1() {
 		Study study = new Study();
