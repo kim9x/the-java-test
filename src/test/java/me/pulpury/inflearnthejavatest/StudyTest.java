@@ -7,12 +7,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
 
 	@Test
-	void create() {
+	@DisplayName("스터디 만들기😭")
+	void create_new_study() {
 		Study study = new Study();
 		assertNotNull(study);
 		System.out.println("create");
@@ -21,8 +26,8 @@ class StudyTest {
 	@Test
 	// @Disabled는 해당 테스트를 비활성화 시킬 때 사용한다.
 	// ex) test가 깨질 때, 
-	@Disabled
-	void create1() {
+//	@Disabled
+	void create1_new_study_again() {
 		Study study = new Study();
 		assertNotNull(study);
 		System.out.println("create1");
