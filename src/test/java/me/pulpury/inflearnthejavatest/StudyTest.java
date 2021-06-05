@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
@@ -34,43 +35,17 @@ import org.junit.jupiter.api.condition.OS;
 class StudyTest {
 
 	@Test
-	@DisplayName("스터디 만들기😭")
-	// 복수 선택 가능
-//	@EnabledOnOs(OS.MAC)
-	@EnabledOnOs({OS.MAC, OS.LINUX})
-//	@EnabledOnJre(JRE.JAVA_8)
-	@EnabledOnJre({JRE.JAVA_8, JRE.JAVA_9, JRE.JAVA_10, JRE.JAVA_11})
-	@EnabledIfEnvironmentVariable(named = "TEST_EVN", matches = "LOCAL")
+	@DisplayName("스터디 만들기 fast")
+	@Tag("fast")
 	void create_new_study() {
-		// 시스템 변수를 eclipse를 킬 때 다 읽어오므로 변경 될 시
-		// eclipse 혹은 다른 IDE를 리부트 해줘야한다.
-		String test_env = System.getenv("TEST_ENV");
-		System.out.println(test_env);
-		assumeTrue("LOCAL".equalsIgnoreCase(test_env));
-		
-		assumingThat("LOCAL".equalsIgnoreCase(test_env), () -> {
-			// TODO Something
-			System.out.println("LOCAL");
-		});
-		
-		assumingThat("taeju".equalsIgnoreCase(test_env), () -> {
-			// TODO Something
-		});
-		
-		Study actual = new Study(10);
+		Study actual = new Study(100);
 		assertThat(actual.getLimit()).isGreaterThan(0);
 	}
 	
 	@Test
-	// @Disabled는 해당 테스트를 비활성화 시킬 때 사용한다.
-	// ex) test가 깨질 때, 
-//	@Disabled
-	@DisabledOnOs(OS.MAC)
-	@EnabledOnJre(JRE.OTHER)
-	@EnabledIfEnvironmentVariable(named = "TEST_EVN", matches = "taeju")
+	@DisplayName("스터디 만들기 slow")
+	@Tag("slow")
 	void create1_new_study_again() {
-		Study study = new Study();
-		assertNotNull(study);
 		System.out.println("create1");
 	}
 	

@@ -18,7 +18,7 @@ public class Study {
 	}
 
 	public int getLimit() {
-		return limit;
+		return this.limit;
 	}
 
 }
