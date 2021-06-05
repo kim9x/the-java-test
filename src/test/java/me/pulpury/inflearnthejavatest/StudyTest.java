@@ -51,7 +51,7 @@ class StudyTest {
 		System.out.println("create1");
 	}
 	
-	/* @DisplayName("스터디 만들기")
+	@DisplayName("스터디 만들기")
 	@RepeatedTest(value = 10, name = "{displayName}, {currentRepetition}/{totalRepetitions}")
 	void repeatTest(RepetitionInfo repetitionInfo) {
 		System.out.println("test " + repetitionInfo.getCurrentRepetition() + "/" +
@@ -64,7 +64,7 @@ class StudyTest {
 	@ValueSource(strings = {"날씨가", "많이", "추워지고", "있네요."})
 	void parameterizedTest(String message) {
 		System.out.println(message);
-	} */
+	}
 	
 	// 모든 테스트 가 실행되기 전에 딱 1번 실행 된다.
 	// static과 default만 가능, private은 안됨.
