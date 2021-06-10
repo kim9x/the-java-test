@@ -38,7 +38,9 @@ import org.junit.jupiter.api.condition.EnabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.JRE;
 import org.junit.jupiter.api.condition.OS;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ParameterContext;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.AggregateWith;
 import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
@@ -53,12 +55,19 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+//@ExtendWith(FindSlowTestExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudyTest {
 	
-	int value = 0;
+	int value = 1;
+	
+	// @ExtendWith 는 파라미터 값 등을 전해 줄 수 없기 때문에
+	// 인스턴스를 생성할 땐 생성자 등의 값을 넣어주기 위해
+	// @ExtendWith 대신 @RegisterExtension 등을 사용하면 된다.
+	@RegisterExtension
+	static FindSlowTestExtension FindSlowTestExtension = new FindSlowTestExtension(1000L);
 
 	@Order(2)
 	@FastTest
@@ -71,9 +80,11 @@ class StudyTest {
 	}
 	
 	@Order(1)
-	@SlowTest
+//	@SlowTest
+	@Test
 	@DisplayName("스터디 만들기 slow")
-	void create1_new_study_again() {
+	void create1_new_study_again() throws InterruptedException {
+		Thread.sleep(1005L);
 		System.out.println(value++);
 		System.out.println("create1");
 	}
